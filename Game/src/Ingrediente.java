@@ -1,8 +1,7 @@
-import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
-
 public class Ingrediente {
+    //ingredients class
     private String ingrediente;
     private int id;
     private ImageIcon imagen;
@@ -50,8 +49,5 @@ public class Ingrediente {
     public void setPosicion(int posicion) {
         this.posicion = posicion;
     }
-
- 
-    
      
 }

@@ -1,13 +1,13 @@
-
-
+import javax.swing.ImageIcon;
 
 public class Hamburguesa {
+    
     private int tiempoIngreso = 20000;
     private String hamburguesaTipo;
     private int puntaje;
     private String ingredientes;
     
-    //constructores
+    //Constructores
     public Hamburguesa() {
     }
 
@@ -17,8 +17,7 @@ public class Hamburguesa {
         this.ingredientes = ingredientes;
     }
 
-
-    //getters ansd setters
+    //Getters n setters
     public int getTiempoIngreso() {
         return tiempoIngreso;
     }
@@ -50,12 +49,10 @@ public class Hamburguesa {
     public void setIngredientes(String ingredientes) {
         this.ingredientes = ingredientes;
     }
-
     
+    //Imprimir
     @Override
     public String toString() {
         return "Preparar: " +  hamburguesaTipo + "\n" + "Ingredientes:" + ingredientes ;
     }
-    
-    
 }

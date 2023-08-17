@@ -1,12 +1,8 @@
-
-/**
- *
- * @author usuario
- */
 public class Nodo {
     private Hamburguesa dato;
     private Nodo atras;
-
+    
+    //Constructores
     public Nodo() {
     }
     
@@ -14,7 +10,8 @@ public class Nodo {
         this.dato = dato;
         this.atras = null;
     }
-
+    
+    //Getters n Setters
     public Hamburguesa getDato() {
         return dato;
     }
@@ -30,7 +27,5 @@ public class Nodo {
     public void setAtras(Nodo atras) {
         this.atras = atras;
     }
-
-
     
 }

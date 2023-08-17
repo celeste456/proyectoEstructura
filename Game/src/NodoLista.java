@@ -1,4 +1,3 @@
-
 public class NodoLista {
     private Ingrediente dato;
     private NodoLista next;
@@ -24,8 +23,5 @@ public class NodoLista {
     public void setNext(NodoLista next) {
         this.next = next;
     }
-    
-
-
     
 }
