@@ -23,6 +23,7 @@ public class Game extends JPanel {
     
     private ImageIcon imagen6;
     private ImageIcon imagen7;
+    private ImageIcon imagen8;
     private Rectangle rectangulo1, rectangulo2, rectangulo3, rectangulo4, rectangulo5, rectangulo6, rectangulo7;//alto ancho
     private Point puntoInicial1, puntoInicial2, puntoInicial3, puntoInicial4, puntoInicial5;//cordenadas
     
@@ -54,6 +55,7 @@ public class Game extends JPanel {
         
         this.imagen6 = new ImageIcon(getClass().getResource("img/hambSencilla.png"));
         this.imagen7 = new ImageIcon(getClass().getResource("img/trash.png"));
+        this.imagen8= new ImageIcon(getClass().getResource("img/fondo.jpg"));
         
         this.rectangulo1 = new Rectangle(puntoInicial1.x, puntoInicial1.y, 80, 71);//rectangulo(borde de la imagen)
         this.rectangulo2 = new Rectangle(puntoInicial2.x, puntoInicial2.y, 80, 71);
@@ -244,6 +246,7 @@ public class Game extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        g.drawImage(imagen8.getImage(),0,0,this); //fondo juego
         //creo listaCircular 
         lc.insertaModificado();
         //variable recibe cantidad de nodos
