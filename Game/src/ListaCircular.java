@@ -1,7 +1,6 @@
 import javax.swing.ImageIcon;
 
 public class ListaCircular {
-    
     private NodoLista cabeza;
     private NodoLista ultimo;
     private boolean x=false;

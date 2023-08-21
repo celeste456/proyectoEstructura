@@ -1,5 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.sound.sampled.AudioInputStream;
@@ -8,29 +7,26 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
-import java.text.DecimalFormat;
-import javax.swing.Timer;
+import javax.swing.ImageIcon;
 
 public class Start extends javax.swing.JFrame {
-    
-    Timer timer;
-    int segundo,minuto;
-    String ddsegundo, ddminuto;
-    DecimalFormat dfor = new DecimalFormat("00");
 
     public Start() {
         initComponents();
         setLocationRelativeTo(null);//hacer que salga en el centro 
+        setTitle("OverCookedFide");
+        setIconImage(new ImageIcon(getClass().getResource("img/hambSencilla.png")).getImage()); 
         
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("musica/musica.wav"));
-            Clip clip = AudioSystem.getClip();
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("musica/musica.wav"));//obtner el audio
+            Clip clip = AudioSystem.getClip();//se crea un reproductor de audio
             clip.open(audioInputStream);
             clip.loop(Clip.LOOP_CONTINUOUSLY); //para que se repita
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             ex.printStackTrace();
         }
+        
     }
 
     /**
@@ -93,38 +89,10 @@ public class Start extends javax.swing.JFrame {
     gameFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
     gameFrame.setVisible(true);
     gameFrame.setResizable(false);
-    
-    segundo = 30;
-    minuto = 0;
-    
-    timer = new Timer(1000, new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            segundo--;
-
-            ddsegundo = dfor.format(segundo);
-            ddminuto = dfor.format(minuto);
-
-            if (segundo == -1) {
-                segundo = 59;
-                minuto--;
-
-                ddsegundo = dfor.format(segundo);
-                ddminuto = dfor.format(minuto);
-            }
-
-            if (minuto == 0 && segundo == 0) {
-                timer.stop();
-                gameFrame.dispose(); // Cerrar el JFrame del juego
-            }
-        }
-    });
-    
-    tiempo(); // Iniciar el temporizador
-
+    ImageIcon icono = new ImageIcon(Game.class.getResource("img/hambSencilla.png"));
+    Image imagenIcono = icono.getImage();
+    gameFrame.setIconImage(imagenIcono);
     }//GEN-LAST:event_iniciobtnMouseClicked
-    private void tiempo() {
-        timer.start(); // Iniciar el temporizador
-    }
     private void comobtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comobtnMouseClicked
        String tutorial = "Eres el chef a cargo de un renombrado restaurante famoso por sus deliciosas hamburguesas.\n"
         + "Tu misión es crear las hamburguesas según las preferencias de los comensales, mientras acumulas la mayor cantidad de puntos en un lapso de 5 minutos.\n" +
@@ -143,8 +111,6 @@ public class Start extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, tutorial, "Tutorial", JOptionPane.QUESTION_MESSAGE);
     }//GEN-LAST:event_comobtnMouseClicked
 
-    
-    
     /**
      * @param args the command line arguments
      */

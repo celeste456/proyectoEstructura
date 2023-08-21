@@ -17,10 +17,10 @@ import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 public class Game extends JPanel {
-    
     private ImageIcon imagen6;
     private ImageIcon imagen7;
     private ImageIcon imagen8;
@@ -44,6 +44,7 @@ public class Game extends JPanel {
     //ordenes 
     private JTextArea ordenes;
     private String orden;
+    private Timer actualizarOrdenes;
     
     public Game(){
         //instancio coordenadas de imagenes
@@ -68,10 +69,9 @@ public class Game extends JPanel {
         puntajeLabel = new JLabel("Puntaje: 0");
         tm = new JLabel("00:00");
         
-        
         //tiempo de inicio
-        segundo =30;
-        minuto =0;
+        segundo =0;
+        minuto =1;
         tiempo();
         timer.start();
         
@@ -84,7 +84,7 @@ public class Game extends JPanel {
         
         //panel inferior de ordenes
         JScrollPane panelOrdenes = new JScrollPane(ordenes);
-        panelOrdenes.setPreferredSize(new Dimension(200, 300)); // Establece el tamaño preferido del JScrollPane
+        panelOrdenes.setPreferredSize(new Dimension(200, 200)); 
         setLayout(new BorderLayout());
 
         //Panel superior para puntaje y tiempo usando FlowLayout
@@ -93,12 +93,20 @@ public class Game extends JPanel {
         panelSuperior.add(puntajeLabel);
         panelSuperior.add(tm);
         
-        //agregar los paneles
         add(panelSuperior, BorderLayout.NORTH);
         add(panelOrdenes, BorderLayout.PAGE_END);
         
-        orden = cola.imprimir();
+        cola.run();
         
+        //timer para actualizar ordenes
+        actualizarOrdenes = new Timer(200, e -> {
+            String orden = cola.imprimir();
+            ordenes.setText(orden);
+            ordenes.revalidate();
+            ordenes.repaint();
+            });
+        actualizarOrdenes.start();
+       
         movimientos();//se llama al metodo que detecta los movimientos del mouse
     }
     
@@ -125,6 +133,7 @@ public class Game extends JPanel {
                 if(minuto == 0 && segundo == 0 ){
                     timer.stop();
                     JOptionPane.showMessageDialog(null, "Game Over"+"\n"+"Puntaje Final: "+puntaje);
+                    SwingUtilities.getWindowAncestor(Game.this).dispose();//busca a Start y quita a game 
                 }
             }
         });
@@ -365,20 +374,12 @@ public class Game extends JPanel {
        //Nodo de la lista circular colisionado 
        NodoLista colisionado=colision();
        //Pedido actual
-       cola.run();
-       Nodo aux=cola.getFrente();
-       
-       //agregar ordenes al textArea
-       String orden = cola.imprimir();
-       ordenes.setText(orden);
-       ordenes.repaint();
-       
+       Nodo aux =cola.getFrente();
        //si no hay ninguna colision entonces vuelvo al inicio
+       
        if(colisionado!=null){
             switch (aux.getDato().getPuntaje()){
             case 5:
-                ordenes.repaint();
-
                 if(!seleccionados.contains(1)){
                     if(colisionado.getDato().getId()==1){
                         seleccionados.add(1);
@@ -394,7 +395,6 @@ public class Game extends JPanel {
                     seleccionados.clear();
                     //elimino el pedido que se encuentra al frente de la cola
                     cola.atiende();
-                    ordenes.repaint();
                     //actualizo el puntaje
                     puntaje=puntaje+5;
                     puntajeLabel.setText("Puntaje: " + puntaje);
@@ -419,7 +419,6 @@ public class Game extends JPanel {
                     }
                 }if(seleccionados.contains(1) && seleccionados.contains(2) && seleccionados.contains(3)){
                     cola.atiende();
-                    ordenes.repaint();
                     seleccionados.clear();
                     puntaje=puntaje+10;
                     puntajeLabel.setText("Puntaje: " + puntaje);
@@ -427,8 +426,6 @@ public class Game extends JPanel {
                 }
                  break;
             case 15:
-                ordenes.repaint();
-
                 if(!seleccionados.contains(1)){
                     if(colisionado.getDato().getId()==1){
                         seleccionados.add(1);
@@ -449,9 +446,7 @@ public class Game extends JPanel {
                         seleccionados.add(4);
                         lc.elimina(colisionado.getDato().getPosicion());
                     }
-                }if(seleccionados.contains(1) && seleccionados.contains(2) && seleccionados.contains(3) && seleccionados.contains(4)){
                     cola.atiende();
-                    ordenes.repaint();
                     seleccionados.clear();
                     puntaje=puntaje+15;
                     puntajeLabel.setText("Puntaje: " + puntaje);
@@ -459,11 +454,11 @@ public class Game extends JPanel {
                 }
                  break;
             case 0:
-                ordenes.repaint();
             default:
                 break;
             }
         }
+       actualizarOrdenes.restart();
     }
     
 }

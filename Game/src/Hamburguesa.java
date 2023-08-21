@@ -1,7 +1,4 @@
-import javax.swing.ImageIcon;
-
 public class Hamburguesa {
-    
     private int tiempoIngreso = 20000;
     private String hamburguesaTipo;
     private int puntaje;

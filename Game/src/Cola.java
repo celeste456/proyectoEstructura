@@ -1,11 +1,11 @@
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Cola extends TimerTask { //queue
-    private Nodo frente;//firts
-    private Nodo ultimo;//last
-    private int largo;//size
-    private int cantidad;//size of queue
+public class Cola extends TimerTask { 
+    private Nodo frente;
+    private Nodo ultimo;
+    private int largo;
+    private int cantidad;
     private Timer timer;
     
     public Cola() {
