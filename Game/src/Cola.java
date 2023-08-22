@@ -80,8 +80,8 @@ public class Cola extends TimerTask {
                 x=recorrerCola();
                 if(x != 3){
                     encola(new Hamburguesa("Hamburguesa de carne", 5, "pan y carne"));
-                    System.out.println("------------------");
-                    System.out.println(imprimir());
+                    //System.out.println("------------------");
+                    //System.out.println(imprimir());
                     cantidad=1;
                 }
                 break;
@@ -90,8 +90,8 @@ public class Cola extends TimerTask {
                 y=recorrerCola();
                 if(y != 3){
                     encola(new Hamburguesa("Hamburguesa de queso", 10, "pan, carne y queso"));
-                    System.out.println("------------------");
-                    System.out.println(imprimir());
+                    //System.out.println("------------------");
+                    //System.out.println(imprimir());
                     cantidad=2;
                 }
                 break;
@@ -100,8 +100,8 @@ public class Cola extends TimerTask {
                 z=recorrerCola();
                 if(z != 3){
                     encola(new Hamburguesa("Hamburguesa clásica", 15, "pan, carne, queso y lechuga"));
-                    System.out.println("------------------");
-                    System.out.println(imprimir());
+                    //System.out.println("------------------");
+                    //System.out.println(imprimir());
                     cantidad=0;
                 }
                 break;

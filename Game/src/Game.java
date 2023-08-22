@@ -376,8 +376,7 @@ public class Game extends JPanel {
        //Pedido actual
        Nodo aux =cola.getFrente();
        //si no hay ninguna colision entonces vuelvo al inicio
-       
-       if(colisionado!=null){
+       if(colisionado!=null && aux!=null){
             switch (aux.getDato().getPuntaje()){
             case 5:
                 if(!seleccionados.contains(1)){
