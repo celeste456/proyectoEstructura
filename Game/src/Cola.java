@@ -14,7 +14,7 @@ public class Cola extends TimerTask {
         this.largo = 0;
         this.cantidad=0;
         timer = new Timer();
-        timer.schedule(this,1000, 10000);
+        timer.schedule(this,20000, 20000);
     }
 
     public Nodo getFrente() {

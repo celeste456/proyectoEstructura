@@ -71,7 +71,7 @@ public class Game extends JPanel {
         
         //tiempo de inicio
         segundo =0;
-        minuto =1;
+        minuto =5;
         tiempo();
         timer.start();
         
@@ -446,6 +446,8 @@ public class Game extends JPanel {
                         seleccionados.add(4);
                         lc.elimina(colisionado.getDato().getPosicion());
                     }
+                }
+                if(seleccionados.contains(1) && seleccionados.contains(2) && seleccionados.contains(3)&& seleccionados.contains(4)){
                     cola.atiende();
                     seleccionados.clear();
                     puntaje=puntaje+15;
